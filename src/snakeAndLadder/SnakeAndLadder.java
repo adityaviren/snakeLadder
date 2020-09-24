@@ -1,12 +1,16 @@
 package snakeAndLadder;
-import java.util.Scanner;
+
 public class SnakeAndLadder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int position=0;
-		diceRoll();
-		positionRoll();
+		int position=0,temp_change_position;
+		while(position <= 100) {
+			temp_change_position=diceRoll()*positionRoll();
+			position+=temp_change_position;
+			if(position<=0)
+				position=0;
+		}
 	}
 	private static int diceRoll() {
 		int random_generator = (int) ((Math.random()*60)%6);
