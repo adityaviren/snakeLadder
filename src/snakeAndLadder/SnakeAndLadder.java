@@ -8,5 +8,8 @@ public class SnakeAndLadder {
 		int position=0;
 		
 	}
+	private static int diceRoll() {
+		return (int)((Math.random()*12)%6);
+	}
 
 }
