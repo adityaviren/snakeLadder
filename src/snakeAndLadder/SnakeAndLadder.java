@@ -4,9 +4,9 @@ public class SnakeAndLadder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc=new Scanner(System.in);
 		int position=0;
-		
+		diceRoll();
+		positionRoll();
 	}
 	private static int diceRoll() {
 		int random_generator = (int) ((Math.random()*60)%6);
@@ -32,6 +32,22 @@ public class SnakeAndLadder {
 			break;
 		}
 		return dice_roll;
+	}
+	private static int positionRoll() {
+		int pos_generator = (int) ((Math.random()*30)%3);
+		int pos_roll;
+		switch (pos_generator) {
+		case 1:
+			pos_roll=1;
+			break;
+		case 2:
+			pos_roll=-1;
+			break;
+		default :
+			pos_roll=0;
+			break;
+		}
+		return pos_roll;
 	}
 
 }
