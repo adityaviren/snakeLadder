@@ -1,87 +1,35 @@
 package snakeAndLadder;
 
+import java.util.*;
+
 public class SnakeAndLadder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int position_1 = 0, position_2 = 0, temp_change_position, temp_position, no_of_dice_rolls_1 = 0,no_of_dice_rolls_2=0;
-		boolean toggle_player = true; // true means player 1
-		while (position_1 != 100 && position_2 != 100) {
-			if (toggle_player) {
-				no_of_dice_rolls_1++;
-				temp_position = position_1;
-				temp_change_position = diceRoll() * positionRoll();
-				temp_position += temp_change_position;
-				if (temp_position <= 0)
-					position_1 = 0;
-				else if (temp_position > 100) {
-				} else
-					position_1 = temp_position;
-				toggle_player = (temp_change_position >0) ? true : false ;
-				System.out.println("Position of player 1 is "+position_1);
-			}
-			else {
-				no_of_dice_rolls_2++;
-				temp_position = position_2;
-				temp_change_position = diceRoll() * positionRoll();
-				temp_position += temp_change_position;
-				if (temp_position <= 0)
-					position_2 = 0;
-				else if (temp_position > 100) {
-				} else
-					position_2 = temp_position;
-				toggle_player = (temp_change_position >0) ? false : true ;
-				System.out.println("Position of player 2 is "+position_2);
-			}
+		int position[] = new int[2];
+		int temp_position,temp_change,no_of_rolls=0,dice_roll,position_roll,toggle=0; // 0 means player 1
+		boolean toggle_player=false; // false means player 1
+		while (position[0] != 100 && position[1] !=100) {
+			no_of_rolls++;
+			temp_position=position[toggle];
+			Random random = new Random();
+			dice_roll = (int) random.nextInt(6) + 1;
+			position_roll = (int) random.nextInt(3) - 1;
+			temp_change=dice_roll*position_roll;
+			temp_position += temp_change;
+			if(temp_position<=0)
+				position[toggle]=0;
+			else if(temp_position>100) {}
+			else
+				position[toggle]=temp_position;
+			System.out.println("Position of player "+(toggle+1)+" is "+position[toggle]);
+			toggle_player = (temp_change > 0) ? toggle_player : !toggle_player;
+			toggle=(toggle_player)? 1 : 0;
 		}
-		String message = (position_1==100) ? "Player 1 " : "Player 2 ";
-		System.out.println(message+" won the game in "+(no_of_dice_rolls_1+no_of_dice_rolls_2)+" dice rolls");
+		if(position[0]==100)
+			System.out.println("Player 1 won the game in "+no_of_rolls);
+		else
+			System.out.println("Player 2 won the game in "+no_of_rolls);
 	}
-
-	private static int diceRoll() {
-		int random_generator = (int) ((Math.random() * 60) % 6);
-		int dice_roll;
-		switch (random_generator) {
-		case 1:
-			dice_roll = 1;
-			break;
-		case 2:
-			dice_roll = 2;
-			break;
-		case 3:
-			dice_roll = 3;
-			break;
-		case 4:
-			dice_roll = 4;
-			break;
-		case 5:
-			dice_roll = 5;
-			break;
-		case 0:
-			dice_roll = 6;
-			break;
-		default :
-			dice_roll=0;
-			break;
-		}
-		return dice_roll;
-	}
-
-	private static int positionRoll() {
-		int pos_generator = (int) ((Math.random() * 30) % 3);
-		int pos_roll;
-		switch (pos_generator) {
-		case 1:
-			pos_roll = 1;
-			break;
-		case 2:
-			pos_roll = -1;
-			break;
-		default:
-			pos_roll = 0;
-			break;
-		}
-		return pos_roll;
-	}
-
+	
 }
