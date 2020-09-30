@@ -6,18 +6,21 @@ public class SnakeAndLadder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int position = 0;
+		int position = 0,temp_position=0;
 		while (position != 100) {
+			temp_position=position;
 			System.out.println("position is " + position);
 			Random random = new Random();
 			int dice_roll = (int) random.nextInt(6) + 1;
-			System.out.println("Dice shows " + dice_roll);
 			int position_roll = positionRoll();
-			System.out.println("Play option is " + position_roll);
-			position += dice_roll * position_roll;
-			if(position<=0)
+			temp_position += dice_roll * position_roll;
+			if(temp_position<=0)
 				position=0;
+			else if(temp_position>100) {}
+			else
+				position=temp_position;
 		}
+		System.out.println("player reached "+position);
 	}
 
 	private static int positionRoll() {
