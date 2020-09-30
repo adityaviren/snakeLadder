@@ -6,8 +6,9 @@ public class SnakeAndLadder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int position = 0,temp_position=0;
+		int position = 0,temp_position=0,no_of_rolls=0;
 		while (position != 100) {
+			no_of_rolls++;
 			temp_position=position;
 			System.out.println("position is " + position);
 			Random random = new Random();
@@ -20,7 +21,7 @@ public class SnakeAndLadder {
 			else
 				position=temp_position;
 		}
-		System.out.println("player reached "+position);
+		System.out.println("player reached "+position+" in "+no_of_rolls+" turns.");
 	}
 
 	private static int positionRoll() {
